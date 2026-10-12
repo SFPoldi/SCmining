@@ -50,4 +50,21 @@ function oreEffective(ore, r){
   };
 }
 
-if(typeof module!=="undefined") module.exports={STATS,combine,totals,evaluate,oreEffective};
+// Machbarkeit eines Rocks. Empirische Formel (Mort13's Breakability Chart), so auch in GrimHEX und
+// Peacefrog's Rock Breaker: benoetigte Power = Masse / (1 - R_eff) / 5, R_eff = R * M (R in %, gedeckelt auf 99.99).
+// M = Resistance-Multiplikator des Builds (r.resistance in %). available: Max-Power aller Laser mal powerFactor.
+function rockBreak(r, count, rock, powerFactor=1){
+  const M=1+r.resistance/100;
+  const reff=Math.min(rock.res*M, 99.99);
+  const available=r.powerMax*count*powerFactor;
+  const required=rock.mass/(1-reff/100)/5;
+  return {
+    reff, required, available,
+    maxMass: 5*available*(1-reff/100),
+    canBreak: available>=required,
+    margin: required>0?(available-required)/required*100:null,
+    minThrottle: available>0?required/available*100:null,
+  };
+}
+
+if(typeof module!=="undefined") module.exports={STATS,combine,totals,evaluate,oreEffective,rockBreak};

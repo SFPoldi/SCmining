@@ -43,11 +43,30 @@ function current(){
     laser:LASERS[$("laser").value],
     count:(DATA.ships[$("ship").value]||{count:1}).count,
     ore:DATA.ores[$("ore").value]||null,
+    rock:{mass:parseFloat($("mass").value)||0, res:parseFloat($("rres").value)||0, set:$("mass").value!==""},
+    pf:parseFloat($("pf").value)||1,
     modules:[...document.querySelectorAll(".slot")].map(s=>DATA.modules[s.value]).filter(Boolean),
     gadget:DATA.gadgets[$("gadget").value]||null,
     mode:$("mode").value,
     activeOn:$("activeOn").checked,
   };
+}
+
+function rockRows(b,r){
+  const k=rockBreak(r,b.count,b.rock,b.pf);
+  let h=`<tr><th colspan="2">Gestein${b.ore?" ("+b.ore.name+")":""}</th></tr>
+   <tr><td>Effektive Resistance</td><td>${fmtPct(k.reff)}</td></tr>
+   <tr><td>Max. brechbare Masse</td><td>${fmtN(k.maxMass)}</td></tr>`;
+  if(b.ore){
+    const e=oreEffective({instability:b.ore.instability,resistance:b.rock.res},r);
+    h+=`<tr><td>Instability (Basis ${b.ore.instability})</td><td>${fmtN(e.instability)}</td></tr>`;
+  }
+  if(b.rock.set){
+    h+=`<tr><td>Benötigte Power</td><td>${fmtN(k.required)}</td></tr>
+     <tr><td>Verfügbare Power (max)</td><td>${fmtN(k.available)}</td></tr>
+     <tr><td>Machbar</td><td class="${k.canBreak?"ok":"no"}">${k.canBreak?"Ja, ab "+k.minThrottle.toFixed(0)+"% Throttle":"Nein, "+fmtPct(k.margin)}</td></tr>`;
+  }
+  return h;
 }
 
 function render(){
@@ -59,14 +78,9 @@ function render(){
   for(const s of STATS.filter(s=>s.pct)){
     h+=`<tr><td>${s.label}</td><td class="${cls(s,r[s.key])}">${fmtPct(r[s.key])}</td></tr>`;
   }
-  if(b.ore){
-    const e=oreEffective(b.ore,r);
-    h+=`<tr><th colspan="2">${b.ore.name}</th></tr>
-     <tr><td>Instability (Basis ${b.ore.instability})</td><td>${fmtN(e.instability)}</td></tr>
-     <tr><td>Resistance (Basis ${fmtPct(b.ore.resistance)})</td><td>${fmtPct(e.resistance)}</td></tr>`;
-  }
+  h+=rockRows(b,r);
   $("stats").innerHTML=h;
-  $("oreNote").textContent=b.ore?"Erzwerte: Basiswert x (1 + Build-Modifier). Annahme, nicht aus dem Spiel verifiziert. Gesteinsmasse und benötigte Power sind in den Daten nicht enthalten.":"";
+  $("oreNote").textContent="Formel (Mort13, wie GrimHEX und Rock Breaker): benötigte Power = Masse / (1 - Resistance_eff) / 5, Resistance_eff = Gesteins-Resistance x Build-Resistance-Multiplikator. Von mir nicht ingame verifiziert.";
 }
 
 function label(b){
@@ -82,6 +96,10 @@ function renderCmp(){
   h+="<tr><td>Extraction Power</td>"+rs.map(r=>`<td>${fmtN(r.extractionPower)}</td>`).join("")+"</tr>";
   for(const s of STATS.filter(s=>s.pct))
     h+=`<tr><td>${s.label}</td>`+rs.map(r=>`<td class="${cls(s,r[s.key])}">${fmtPct(r[s.key])}</td>`).join("")+"</tr>";
+  h+=`<tr><td>Max. brechbare Masse</td>`+saved.map((b,i)=>`<td>${fmtN(rockBreak(rs[i],b.count,b.rock,b.pf).maxMass)}</td>`).join("")+"</tr>";
+  h+=`<tr><td>Machbar (Masse ${saved.map(b=>b.rock.set?fmtN(b.rock.mass):"–").join("/")})</td>`+saved.map((b,i)=>{
+    if(!b.rock.set) return "<td>–</td>"; const k=rockBreak(rs[i],b.count,b.rock,b.pf);
+    return `<td class="${k.canBreak?"ok":"no"}">${k.canBreak?"Ja":"Nein"}</td>`;}).join("")+"</tr>";
   $("cmp").innerHTML=h;
   $("cmp").querySelectorAll("button").forEach(x=>x.onclick=()=>{saved.splice(+x.dataset.i,1);renderCmp();});
 }
@@ -98,13 +116,13 @@ function combos(pool,n){
 }
 
 function renderTop(){
-  const key=$("metric").value, s=STATS.find(x=>x.key===key);
+  const key=$("metric").value, s=STATS.find(x=>x.key===key)||{goodNeg:false};
   const b=current();
   const pool=DATA.modules.filter(m=>!$("onlyPassive").checked||!m.active);
   const rows=combos(pool,b.laser.slots).map(mods=>{
     const x={...b,modules:mods}; return {mods,r:evaluate(x)};
   });
-  const val=r=>key==="power"?r.powerMax:key==="extraction"?(r.extractionPower??-Infinity):r[key];
+  const val=r=>key==="maxMass"?rockBreak(r,b.count,b.rock,b.pf).maxMass:key==="power"?r.powerMax:key==="extraction"?(r.extractionPower??-Infinity):r[key];
   const dir=s.goodNeg?1:-1;
   rows.sort((a,b)=>dir*(val(a.r)-val(b.r)));
   let h="<tr><th>Module</th><th>Power</th><th>Extraction</th>"+STATS.filter(s=>s.pct).map(s=>`<th>${s.label}</th>`).join("")+"</tr>";
@@ -127,11 +145,14 @@ fetch("data/mining.json").then(r=>r.json()).then(d=>{
   fillLasers();
   opt($("gadget"),d.gadgets,g=>g.name);
   $("gadget").add(new Option("– kein Gadget –",-1),0); $("gadget").value=-1;
+  $("metric").add(new Option("Max. brechbare Masse (bei Gesteins-Resistance)","maxMass"));
   STATS.forEach(s=>$("metric").add(new Option(s.label,s.key)));
+  $("metric").value="maxMass";
   buildSlots(); refresh();
   $("laser").onchange=()=>{buildSlots();refresh();};
   $("ship").onchange=()=>{fillLasers();buildSlots();refresh();};
-  for(const id of ["ore","gadget","mode","activeOn","metric","onlyPassive"]) $(id).onchange=refresh;
+  $("ore").addEventListener("change",()=>{const o=DATA.ores[$("ore").value]; if(o) $("rres").value=o.resistance;});
+  for(const id of ["rres","mass","pf","ore","gadget","mode","activeOn","metric","onlyPassive"]) $(id).onchange=refresh;
   $("save").onclick=()=>{saved.push(current());renderCmp();};
   renderCmp();
 }).catch(e=>{document.body.insertAdjacentHTML("beforeend",`<p class="neg" style="padding:16px">Fehler beim Laden: ${e}</p>`);});

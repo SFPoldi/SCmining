@@ -10,8 +10,9 @@ main{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1
 .muted{color:var(--mut)}
 label{display:block;margin:0 0 12px;color:var(--mut);font-size:.85rem}
 label.check{display:flex;gap:8px;align-items:center}
-select,button{width:100%;margin-top:4px;padding:8px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;font:inherit}
+select,input,button{width:100%;margin-top:4px;padding:8px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:6px;font:inherit}
 label.check input{width:auto;margin:0}
+.ok{color:var(--pos);font-weight:600}.no{color:var(--neg);font-weight:600}
 button{cursor:pointer;background:var(--acc);color:#fff;border:0;font-weight:600}
 table{border-collapse:collapse;width:100%}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
