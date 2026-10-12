@@ -11,8 +11,19 @@ function opt(sel, items, label){
 }
 const modLabel=m=>m.name+(m.active?" (aktiv"+(m.uses?`, ${m.uses}x`:"")+")":"");
 
+let LASERS=[];
+function shipLasers(){
+  const sh=DATA.ships[$("ship").value];
+  if(!sh) return DATA.lasers;
+  return DATA.lasers.filter(l=>l.size===sh.size && !(sh.exclude||[]).some(x=>l.name.includes(x)) && (!sh.only||sh.only.some(x=>l.name.includes(x))));
+}
+function fillLasers(){
+  LASERS=shipLasers();
+  opt($("laser"),LASERS,l=>`${l.name.replace(" Mining Laser","")} (S${l.size}, ${l.slots} Slots)`);
+}
+
 function buildSlots(){
-  const laser=DATA.lasers[$("laser").value];
+  const laser=LASERS[$("laser").value];
   const prev=[...document.querySelectorAll(".slot")].map(s=>s.value);
   $("slots").innerHTML="";
   for(let i=0;i<laser.slots;i++){
@@ -29,7 +40,9 @@ function buildSlots(){
 
 function current(){
   return {
-    laser:DATA.lasers[$("laser").value],
+    laser:LASERS[$("laser").value],
+    count:(DATA.ships[$("ship").value]||{count:1}).count,
+    ore:DATA.ores[$("ore").value]||null,
     modules:[...document.querySelectorAll(".slot")].map(s=>DATA.modules[s.value]).filter(Boolean),
     gadget:DATA.gadgets[$("gadget").value]||null,
     mode:$("mode").value,
@@ -40,12 +53,20 @@ function current(){
 function render(){
   const b=current(), r=evaluate(b);
   let h=`<tr><th>Wert</th><th>Ergebnis</th></tr>
-   <tr><td>Mining Power</td><td>${fmtN(r.powerMin)} – ${fmtN(r.powerMax)}</td></tr>
+   <tr><td>Mining Power${b.count>1?" (pro Laser)":""}</td><td>${fmtN(r.powerMin)} – ${fmtN(r.powerMax)}</td></tr>
+   ${b.count>1?`<tr><td>Mining Power (${b.count} Laser)</td><td>${fmtN(r.powerMin*b.count)} – ${fmtN(r.powerMax*b.count)}</td></tr>`:""}
    <tr><td>Extraction Power</td><td>${fmtN(r.extractionPower)}</td></tr>`;
   for(const s of STATS.filter(s=>s.pct)){
     h+=`<tr><td>${s.label}</td><td class="${cls(s,r[s.key])}">${fmtPct(r[s.key])}</td></tr>`;
   }
+  if(b.ore){
+    const e=oreEffective(b.ore,r);
+    h+=`<tr><th colspan="2">${b.ore.name}</th></tr>
+     <tr><td>Instability (Basis ${b.ore.instability})</td><td>${fmtN(e.instability)}</td></tr>
+     <tr><td>Resistance (Basis ${fmtPct(b.ore.resistance)})</td><td>${fmtPct(e.resistance)}</td></tr>`;
+  }
   $("stats").innerHTML=h;
+  $("oreNote").textContent=b.ore?"Erzwerte: Basiswert x (1 + Build-Modifier). Annahme, nicht aus dem Spiel verifiziert. Gesteinsmasse und benötigte Power sind in den Daten nicht enthalten.":"";
 }
 
 function label(b){
@@ -99,13 +120,18 @@ fetch("data/mining.json").then(r=>r.json()).then(d=>{
   DATA=d;
   $("src").textContent=`${d.source}, Stand ${d.fetched.slice(0,10)}`;
   $("meta").textContent=`${d.lasers.length} Laser, ${d.modules.length} Module, ${d.gadgets.length} Gadgets`;
-  opt($("laser"),d.lasers,l=>`${l.name.replace(" Mining Laser","")} (S${l.size}, ${l.slots} Slots)`);
+  opt($("ship"),d.ships,s=>`${s.name} (${s.count}x S${s.size})`);
+  $("ship").add(new Option("– alle Laser –",-1),0); $("ship").value=-1;
+  opt($("ore"),d.ores,o=>o.name);
+  $("ore").add(new Option("– kein Erz –",-1),0); $("ore").value=-1;
+  fillLasers();
   opt($("gadget"),d.gadgets,g=>g.name);
   $("gadget").add(new Option("– kein Gadget –",-1),0); $("gadget").value=-1;
   STATS.forEach(s=>$("metric").add(new Option(s.label,s.key)));
   buildSlots(); refresh();
   $("laser").onchange=()=>{buildSlots();refresh();};
-  for(const id of ["gadget","mode","activeOn","metric","onlyPassive"]) $(id).onchange=refresh;
+  $("ship").onchange=()=>{fillLasers();buildSlots();refresh();};
+  for(const id of ["ore","gadget","mode","activeOn","metric","onlyPassive"]) $(id).onchange=refresh;
   $("save").onclick=()=>{saved.push(current());renderCmp();};
   renderCmp();
 }).catch(e=>{document.body.insertAdjacentHTML("beforeend",`<p class="neg" style="padding:16px">Fehler beim Laden: ${e}</p>`);});

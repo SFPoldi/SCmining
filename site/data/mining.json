@@ -1,6 +1,6 @@
 {
  "source": "api.star-citizen.wiki (Datamining-Export)",
- "fetched": "2026-10-11T23:59:02+00:00",
+ "fetched": "2026-10-12T00:01:40+00:00",
  "lasers": [
   {
    "name": "Arbor MH1 Mining Laser",
@@ -560,6 +560,188 @@
     "rate": -30.0,
     "window": 100.0
    }
+  }
+ ],
+ "ores": [
+  {
+   "name": "Agricium",
+   "instability": 350,
+   "resistance": 50.0,
+   "density": 7.2
+  },
+  {
+   "name": "Aluminum",
+   "instability": 0,
+   "resistance": -40.0,
+   "density": 2.7
+  },
+  {
+   "name": "Aslarite",
+   "instability": 700,
+   "resistance": 50.0,
+   "density": 2.3
+  },
+  {
+   "name": "Beryl",
+   "instability": 350,
+   "resistance": 65.0,
+   "density": 2.75
+  },
+  {
+   "name": "Bexalite",
+   "instability": 600,
+   "resistance": 60.0,
+   "density": 6.9
+  },
+  {
+   "name": "Borase",
+   "instability": 40,
+   "resistance": 30.0,
+   "density": 4.5
+  },
+  {
+   "name": "Copper",
+   "instability": 50,
+   "resistance": -70.0,
+   "density": 8.96
+  },
+  {
+   "name": "Corundum",
+   "instability": 50,
+   "resistance": 10.0,
+   "density": 4.02
+  },
+  {
+   "name": "Gold",
+   "instability": 550,
+   "resistance": 50.0,
+   "density": 19.32
+  },
+  {
+   "name": "Hephaestanite",
+   "instability": 400,
+   "resistance": -30.0,
+   "density": 3.2
+  },
+  {
+   "name": "Ice",
+   "instability": 0,
+   "resistance": -50.0,
+   "density": 1
+  },
+  {
+   "name": "Iron",
+   "instability": 50,
+   "resistance": -40.0,
+   "density": 7.87
+  },
+  {
+   "name": "Laranite",
+   "instability": 400,
+   "resistance": 50.0,
+   "density": 11.5
+  },
+  {
+   "name": "Lindinium",
+   "instability": 1000,
+   "resistance": 95.0,
+   "density": 10.7
+  },
+  {
+   "name": "Ouratite",
+   "instability": 600,
+   "resistance": 60.0,
+   "density": 1.1
+  },
+  {
+   "name": "Quantanium",
+   "instability": 1000,
+   "resistance": 95.0,
+   "density": 20.45
+  },
+  {
+   "name": "Quartz",
+   "instability": 50,
+   "resistance": -70.0,
+   "density": 2.65
+  },
+  {
+   "name": "Riccite",
+   "instability": 850,
+   "resistance": 95.0,
+   "density": 1.6
+  },
+  {
+   "name": "Savrilium",
+   "instability": 1000,
+   "resistance": 95.0,
+   "density": 18.06
+  },
+  {
+   "name": "Silicon",
+   "instability": 50,
+   "resistance": -20.0,
+   "density": 2.34
+  },
+  {
+   "name": "Stileron",
+   "instability": 870,
+   "resistance": 60.0,
+   "density": 4.75
+  },
+  {
+   "name": "Taranite",
+   "instability": 700,
+   "resistance": 50.0,
+   "density": 10.2
+  },
+  {
+   "name": "Tin",
+   "instability": 0,
+   "resistance": -20.0,
+   "density": 5.77
+  },
+  {
+   "name": "Titanium",
+   "instability": 0,
+   "resistance": 10.0,
+   "density": 4.5
+  },
+  {
+   "name": "Torite",
+   "instability": 550,
+   "resistance": 25.0,
+   "density": 2.8
+  },
+  {
+   "name": "Tungsten",
+   "instability": 0,
+   "resistance": -40.0,
+   "density": 19.3
+  }
+ ],
+ "ships": [
+  {
+   "name": "MISC Prospector",
+   "count": 1,
+   "size": 1,
+   "exclude": [
+    "Pitman"
+   ]
+  },
+  {
+   "name": "ARGO MOLE",
+   "count": 3,
+   "size": 2,
+   "exclude": []
+  },
+  {
+   "name": "Drake Golem",
+   "count": 1,
+   "size": 1,
+   "only": [
+    "Pitman"
+   ]
   }
  ]
 }

@@ -42,4 +42,12 @@ function evaluate(build){
   };
 }
 
-if(typeof module!=="undefined") module.exports={STATS,combine,totals,evaluate};
+// Effektive Erzwerte: Erzbasiswert skaliert mit dem Build-Modifier. Formel ist eine Annahme, nicht verifiziert.
+function oreEffective(ore, r){
+  return {
+    instability: ore.instability*(1+r.instability/100),
+    resistance:  ore.resistance*(1+r.resistance/100),
+  };
+}
+
+if(typeof module!=="undefined") module.exports={STATS,combine,totals,evaluate,oreEffective};

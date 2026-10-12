@@ -14,9 +14,11 @@
 <main>
   <section class="card" id="builder">
     <h2>Build</h2>
+    <label>Schiff <select id="ship"></select></label>
     <label>Laser <select id="laser"></select></label>
     <div id="slots"></div>
     <label>Gadget (pro Gestein) <select id="gadget"></select></label>
+    <label>Erz (für Erzwerte) <select id="ore"></select></label>
     <label>Modifier-Kombination
       <select id="mode">
         <option value="mul">Multiplikativ</option>
@@ -30,6 +32,7 @@
   <section class="card" id="result">
     <h2>Ergebnis</h2>
     <table id="stats"></table>
+    <p class="muted" id="oreNote"></p>
   </section>
 
   <section class="card wide" id="compare">

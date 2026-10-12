@@ -26,11 +26,38 @@ KEYS = {
 MULT_KEYS = {"power", "extraction"}
 
 
-def fetch(classification):
-    q = urllib.parse.urlencode({"filter[classification]": classification, "limit": 100})
-    req = urllib.request.Request(f"{API}?{q}", headers={"User-Agent": "SCmining/1.0", "Accept": "application/json"})
+def get(url, params):
+    q = urllib.parse.urlencode(params)
+    req = urllib.request.Request(f"{url}?{q}", headers={"User-Agent": "SCmining/1.0", "Accept": "application/json"})
     with urllib.request.urlopen(req, timeout=60) as r:
-        return json.load(r)["data"]
+        return json.load(r)
+
+
+def fetch(classification):
+    return get(API, {"filter[classification]": classification, "limit": 100})["data"]
+
+
+def ores():
+    """Schiffs-Erze mit Instability/Resistance (Commodities, serverseitiger Filter greift nicht)."""
+    url, out, page = "https://api.star-citizen.wiki/api/v2/commodities", [], 1
+    while True:
+        d = get(url, {"limit": 100, "page[number]": page})
+        for c in d["data"]:
+            if c.get("has_ship_mineables") and c.get("instability") is not None and c.get("resistance") is not None:
+                name = re.sub(r"\s*\((Ore|Raw|R)\)$", "", c["name"]).replace("Raw ", "").replace("Quantainium", "Quantanium")
+                out.append({"name": name, "instability": c["instability"],
+                            "resistance": c["resistance"] * 100, "density": c.get("density_g_per_cc")})
+        if page >= d["meta"]["last_page"]:
+            return sorted(out, key=lambda o: o["name"])
+        page += 1
+
+
+# Handgepflegt (nicht aus der API): Anzahl und Groesse der Laser pro Schiff, Pitman nur Golem.
+SHIPS = [
+    {"name": "MISC Prospector", "count": 1, "size": 1, "exclude": ["Pitman"]},
+    {"name": "ARGO MOLE", "count": 3, "size": 2, "exclude": []},
+    {"name": "Drake Golem", "count": 1, "size": 1, "only": ["Pitman"]},
+]
 
 
 def num(s):
@@ -105,10 +132,12 @@ def main():
         "lasers": sorted(lasers, key=key),
         "modules": sorted(modules, key=lambda m: (m["active"], m["name"])),
         "gadgets": sorted(gadgets, key=key),
+        "ores": ores(),
+        "ships": SHIPS,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(data, indent=1, ensure_ascii=False))
-    print(f"{len(lasers)} Laser, {len(modules)} Module, {len(gadgets)} Gadgets -> {OUT}")
+    print(f"{len(lasers)} Laser, {len(modules)} Module, {len(gadgets)} Gadgets, {len(data['ores'])} Erze -> {OUT}")
 
 
 if __name__ == "__main__":

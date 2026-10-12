@@ -13,7 +13,13 @@ Quelle: Star Citizen Wiki API (Datamining-Export). Filter: Testdubletten, Handwe
 ## Tests
     node scripts/test_calc.js
 
+## Hosting (GitHub Pages)
+Der Workflow `.github/workflows/pages.yml` deployt `site/` bei jedem Push auf `main`.
+Einmalig aktivieren: Repo Settings > Pages > Source: **GitHub Actions**.
+
 ## Offene Punkte
 - Kombinationsregel der Modifier (multiplikativ oder additiv) ist nicht aus dem Spiel verifiziert, daher umschaltbar.
 - Gadget-Werte ohne Vorzeichen (z.B. BoreMax Resistance "10%") werden als positiv gelesen.
-- Gesteinsdaten (Masse, Resistance) fehlen noch, daher keine Durchführbarkeitsprüfung.
+- Erzwerte (Instability, Resistance) stammen aus den Daten. Ihre Verrechnung mit dem Build (Basis x (1 + Modifier)) ist eine Annahme.
+- Gesteinsmasse und die Formel für die benötigte Power fehlen in den Daten, daher keine Durchführbarkeitsprüfung.
+- Schiffs-Presets (Anzahl und Größe der Laser) sind handgepflegt in `scripts/fetch_data.py`.
