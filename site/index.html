@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SC Mining Simulator</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Star Citizen Mining Simulator</h1>
+  <p id="meta" class="muted"></p>
+</header>
+<main>
+  <section class="card" id="builder">
+    <h2>Build</h2>
+    <label>Laser <select id="laser"></select></label>
+    <div id="slots"></div>
+    <label>Gadget (pro Gestein) <select id="gadget"></select></label>
+    <label>Modifier-Kombination
+      <select id="mode">
+        <option value="mul">Multiplikativ</option>
+        <option value="add">Additiv</option>
+      </select>
+    </label>
+    <label class="check"><input type="checkbox" id="activeOn" checked> Aktive Module eingeschaltet</label>
+    <button id="save">Build zum Vergleich hinzufügen</button>
+  </section>
+
+  <section class="card" id="result">
+    <h2>Ergebnis</h2>
+    <table id="stats"></table>
+  </section>
+
+  <section class="card wide" id="compare">
+    <h2>Vergleich</h2>
+    <p class="muted" id="cmpEmpty">Noch keine Builds gespeichert.</p>
+    <div class="scroll"><table id="cmp"></table></div>
+  </section>
+
+  <section class="card wide" id="best">
+    <h2>Beste Kombinationen</h2>
+    <label>Sortieren nach
+      <select id="metric"></select>
+    </label>
+    <label class="check"><input type="checkbox" id="onlyPassive"> nur passive Module</label>
+    <div class="scroll"><table id="top"></table></div>
+  </section>
+</main>
+<footer class="muted">
+  Daten: <span id="src"></span>. Die Kombinationsregeln (multiplikativ/additiv) sind nicht aus dem Spiel verifiziert.
+</footer>
+<script src="calc.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

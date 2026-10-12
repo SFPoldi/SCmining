@@ -1,0 +1,565 @@
+{
+ "source": "api.star-citizen.wiki (Datamining-Export)",
+ "fetched": "2026-10-11T23:59:02+00:00",
+ "lasers": [
+  {
+   "name": "Arbor MH1 Mining Laser",
+   "id": "Mining_Laser_GRIN_Arbor_S1",
+   "size": 1,
+   "slots": 1,
+   "power_min": 189.0,
+   "power_max": 1890.0,
+   "extraction": 1850.0,
+   "optimal_range": 60.0,
+   "max_range": 180.0,
+   "mods": {
+    "instability": -35.0,
+    "window": 40.0,
+    "resistance": 25.0
+   }
+  },
+  {
+   "name": "Arbor MH2 Mining Laser",
+   "id": "Mining_Laser_GRIN_Arbor_S2",
+   "size": 2,
+   "slots": 2,
+   "power_min": 480.0,
+   "power_max": 2400.0,
+   "extraction": 2590.0,
+   "optimal_range": 90.0,
+   "max_range": 270.0,
+   "mods": {
+    "instability": -35.0,
+    "window": 40.0,
+    "resistance": 25.0
+   }
+  },
+  {
+   "name": "Helix I Mining Laser",
+   "id": "Mining_Laser_THCN_Helix_S1",
+   "size": 1,
+   "slots": 2,
+   "power_min": 630.0,
+   "power_max": 3150.0,
+   "extraction": 1850.0,
+   "optimal_range": 15.0,
+   "max_range": 45.0,
+   "mods": {
+    "window": -40.0,
+    "resistance": -30.0
+   }
+  },
+  {
+   "name": "Helix II Mining Laser",
+   "id": "Mining_Laser_THCN_Helix_S2",
+   "size": 2,
+   "slots": 3,
+   "power_min": 1020.0,
+   "power_max": 4080.0,
+   "extraction": 2590.0,
+   "optimal_range": 30.0,
+   "max_range": 90.0,
+   "mods": {
+    "window": -40.0,
+    "resistance": -30.0
+   }
+  },
+  {
+   "name": "Hofstede-S1 Mining Laser",
+   "id": "Mining_Laser_SHIN_Hofstede_S1",
+   "size": 1,
+   "slots": 1,
+   "power_min": 105.0,
+   "power_max": 2100.0,
+   "extraction": 1295.0,
+   "optimal_range": 45.0,
+   "max_range": 135.0,
+   "mods": {
+    "instability": 10.0,
+    "rate": 20.0,
+    "resistance": -30.0
+   }
+  },
+  {
+   "name": "Hofstede-S2 Mining Laser",
+   "id": "Mining_Laser_SHIN_Hofstede_S2",
+   "size": 2,
+   "slots": 2,
+   "power_min": 336.0,
+   "power_max": 3360.0,
+   "extraction": 1295.0,
+   "optimal_range": 60.0,
+   "max_range": 180.0,
+   "mods": {
+    "instability": 10.0,
+    "rate": 20.0,
+    "resistance": -30.0
+   }
+  },
+  {
+   "name": "Impact I Mining Laser",
+   "id": "Mining_Laser_THCN_Impact_S1",
+   "size": 1,
+   "slots": 2,
+   "power_min": 420.0,
+   "power_max": 2100.0,
+   "extraction": 2775.0,
+   "optimal_range": 45.0,
+   "max_range": 135.0,
+   "mods": {
+    "instability": -10.0,
+    "rate": -40.0,
+    "window": 20.0,
+    "resistance": 10.0
+   }
+  },
+  {
+   "name": "Impact II Mining Laser",
+   "id": "Mining_Laser_THCN_Impact_S2",
+   "size": 2,
+   "slots": 3,
+   "power_min": 840.0,
+   "power_max": 3360.0,
+   "extraction": 3145.0,
+   "optimal_range": 60.0,
+   "max_range": 180.0,
+   "mods": {
+    "instability": -10.0,
+    "rate": -40.0,
+    "window": 20.0,
+    "resistance": 10.0
+   }
+  },
+  {
+   "name": "Klein-S1 Mining Laser",
+   "id": "Mining_Laser_SHIN_Klein_S1",
+   "size": 1,
+   "slots": 0,
+   "power_min": 378.0,
+   "power_max": 2220.0,
+   "extraction": 2220.0,
+   "optimal_range": 45.0,
+   "max_range": 135.0,
+   "mods": {
+    "instability": 35.0,
+    "window": 20.0,
+    "resistance": -45.0
+   }
+  },
+  {
+   "name": "Klein-S2 Mining Laser",
+   "id": "Mining_Laser_SHIN_Klein_S2",
+   "size": 2,
+   "slots": 1,
+   "power_min": 720.0,
+   "power_max": 3600.0,
+   "extraction": 2775.0,
+   "optimal_range": 60.0,
+   "max_range": 180.0,
+   "mods": {
+    "instability": 35.0,
+    "window": 20.0,
+    "resistance": -45.0
+   }
+  },
+  {
+   "name": "Lancet MH1 Mining Laser",
+   "id": "Mining_Laser_GRIN_Lancet_S1",
+   "size": 1,
+   "slots": 1,
+   "power_min": 504.0,
+   "power_max": 2520.0,
+   "extraction": 1850.0,
+   "optimal_range": 30.0,
+   "max_range": 90.0,
+   "mods": {
+    "instability": -10.0,
+    "rate": 40.0,
+    "window": -60.0
+   }
+  },
+  {
+   "name": "Lancet MH2 Mining Laser",
+   "id": "Mining_Laser_GRIN_Lancet_S2",
+   "size": 2,
+   "slots": 2,
+   "power_min": 900.0,
+   "power_max": 3600.0,
+   "extraction": 2590.0,
+   "optimal_range": 45.0,
+   "max_range": 135.0,
+   "mods": {
+    "instability": -10.0,
+    "rate": 40.0,
+    "window": -60.0
+   }
+  },
+  {
+   "name": "Pitman Mining Laser",
+   "id": "Mining_Laser_DRAK_Golem_S1",
+   "size": 1,
+   "slots": 2,
+   "power_min": 3150.0,
+   "power_max": 3150.0,
+   "extraction": null,
+   "optimal_range": 40.0,
+   "max_range": 45.0,
+   "mods": {
+    "instability": 35.0,
+    "rate": -40.0,
+    "resistance": 25.0
+   }
+  }
+ ],
+ "modules": [
+  {
+   "name": "FLTR",
+   "id": "Mining_Modules_Passive_FLTR_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -15.0
+   }
+  },
+  {
+   "name": "FLTR-L",
+   "id": "Mining_Modules_Passive_FLTR_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -10.0
+   }
+  },
+  {
+   "name": "FLTR-XL",
+   "id": "Mining_Modules_Passive_FLTR_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -5.0
+   }
+  },
+  {
+   "name": "Focus",
+   "id": "Mining_Modules_Passive_Focus_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": -15.0,
+    "window": 30.0
+   }
+  },
+  {
+   "name": "Focus II",
+   "id": "Mining_Modules_Passive_Focus_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": -10.0,
+    "window": 37.0
+   }
+  },
+  {
+   "name": "Focus III",
+   "id": "Mining_Modules_Passive_Focus_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": -5.0,
+    "window": 40.0
+   }
+  },
+  {
+   "name": "Rieger",
+   "id": "Mining_Modules_Passive_Rieger_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": 15.0,
+    "window": -10.0
+   }
+  },
+  {
+   "name": "Rieger-C2",
+   "id": "Mining_Modules_Passive_Rieger_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": 20.0,
+    "window": -3.0
+   }
+  },
+  {
+   "name": "Rieger-C3",
+   "id": "Mining_Modules_Passive_Rieger_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "power": 25.0,
+    "window": -1.0
+   }
+  },
+  {
+   "name": "Torrent",
+   "id": "Mining_Modules_Passive_Torrent_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "rate": 30.0,
+    "window": -10.0
+   }
+  },
+  {
+   "name": "Torrent II",
+   "id": "Mining_Modules_Passive_Torrent_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "rate": 35.0,
+    "window": -3.0
+   }
+  },
+  {
+   "name": "Torrent III",
+   "id": "Mining_Modules_Passive_Torrent_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "rate": 40.0,
+    "window": -1.0
+   }
+  },
+  {
+   "name": "Vaux",
+   "id": "Mining_Modules_Passive_Vaux_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": 15.0,
+    "rate": -20.0
+   }
+  },
+  {
+   "name": "Vaux-C2",
+   "id": "Mining_Modules_Passive_Vaux_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": 20.0,
+    "rate": -15.0
+   }
+  },
+  {
+   "name": "Vaux-C3",
+   "id": "Mining_Modules_Passive_Vaux_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": 25.0,
+    "rate": -5.0
+   }
+  },
+  {
+   "name": "XTR",
+   "id": "Mining_Modules_Passive_XTR_MK1",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -15.0,
+    "window": 15.0
+   }
+  },
+  {
+   "name": "XTR-L",
+   "id": "Mining_Modules_Passive_XTR_MK2",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -10.0,
+    "window": 22.0
+   }
+  },
+  {
+   "name": "XTR-XL",
+   "id": "Mining_Modules_Passive_XTR_MK3",
+   "active": false,
+   "uses": null,
+   "duration": null,
+   "mods": {
+    "extraction": -5.0,
+    "window": 25.0
+   }
+  },
+  {
+   "name": "Brandt",
+   "id": "Mining_Modules_Active_Brandt",
+   "active": true,
+   "uses": 5,
+   "duration": 60.0,
+   "mods": {
+    "power": 35.0,
+    "resistance": 15.0,
+    "shatter": -30.0
+   }
+  },
+  {
+   "name": "Forel",
+   "id": "Mining_Modules_Active_Forel",
+   "active": true,
+   "uses": 6,
+   "duration": 60.0,
+   "mods": {
+    "catastrophic": -60.0,
+    "extraction": 50.0,
+    "resistance": 15.0
+   }
+  },
+  {
+   "name": "Lifeline",
+   "id": "Mining_Modules_Active_Lifeline",
+   "active": true,
+   "uses": 3,
+   "duration": 15.0,
+   "mods": {
+    "catastrophic": 60.0,
+    "instability": -20.0,
+    "resistance": -15.0
+   }
+  },
+  {
+   "name": "Optimum",
+   "id": "Mining_Modules_Active_Optimum",
+   "active": true,
+   "uses": 5,
+   "duration": 60.0,
+   "mods": {
+    "catastrophic": -80.0,
+    "instability": -10.0,
+    "power": -15.0
+   }
+  },
+  {
+   "name": "Rime",
+   "id": "Mining_Modules_Active_Rime",
+   "active": true,
+   "uses": 10,
+   "duration": 20.0,
+   "mods": {
+    "power": -15.0,
+    "resistance": -25.0,
+    "shatter": -10.0
+   }
+  },
+  {
+   "name": "Stampede",
+   "id": "Mining_Modules_Active_Stampede",
+   "active": true,
+   "uses": 6,
+   "duration": 30.0,
+   "mods": {
+    "extraction": -15.0,
+    "instability": -10.0,
+    "power": 35.0,
+    "shatter": -10.0
+   }
+  },
+  {
+   "name": "Surge",
+   "id": "Mining_Modules_Active_Surge",
+   "active": true,
+   "uses": 7,
+   "duration": 15.0,
+   "mods": {
+    "instability": 10.0,
+    "power": 50.0,
+    "resistance": -15.0
+   }
+  },
+  {
+   "name": "Torpid",
+   "id": "Mining_Modules_Active_Torpid",
+   "active": true,
+   "uses": 5,
+   "duration": 60.0,
+   "mods": {
+    "catastrophic": -60.0,
+    "rate": 60.0,
+    "shatter": 40.0
+   }
+  }
+ ],
+ "gadgets": [
+  {
+   "name": "BoreMax",
+   "id": "Mining_Gadget_THCN_BoreMax",
+   "mods": {
+    "cluster": 30.0,
+    "instability": -70.0,
+    "resistance": 10.0
+   }
+  },
+  {
+   "name": "Okunis",
+   "id": "Mining_Gadget_SHIN_Okunis",
+   "mods": {
+    "cluster": -20.0,
+    "rate": 100.0,
+    "window": 50.0
+   }
+  },
+  {
+   "name": "OptiMax",
+   "id": "Mining_Gadget_GRIN_OptiMax",
+   "mods": {
+    "cluster": 60.0,
+    "window": -30.0,
+    "resistance": -30.0
+   }
+  },
+  {
+   "name": "Sabir",
+   "id": "Mining_Gadget_SHIN_Sabir",
+   "mods": {
+    "instability": 15.0,
+    "window": 50.0,
+    "resistance": -50.0
+   }
+  },
+  {
+   "name": "Stalwart",
+   "id": "Mining_Gadget_THCN_Stalwart",
+   "mods": {
+    "cluster": 30.0,
+    "instability": -35.0,
+    "rate": 50.0,
+    "window": -30.0
+   }
+  },
+  {
+   "name": "Waveshift",
+   "id": "Mining_Gadget_GRIN_WaveShift",
+   "mods": {
+    "instability": -35.0,
+    "rate": -30.0,
+    "window": 100.0
+   }
+  }
+ ]
+}
